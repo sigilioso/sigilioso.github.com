@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>sigilioso</title><link href="http://sigilioso.github.com" rel="alternate"></link><link href="http://sigilioso.github.com/feeds/all.atom.xml" rel="self"></link><id>http://sigilioso.github.com</id><updated>2012-07-04T00:00:00+02:00</updated><entry><title>PIL installation problems on CentOS 6</title><link href="http://sigilioso.github.com/pil-installation-problems-on-centos-6.html" rel="alternate"></link><updated>2012-07-04T00:00:00+02:00</updated><author><name>Christian Felipe Álvarez</name></author><id>http://sigilioso.github.com/pil-installation-problems-on-centos-6.html</id><summary type="html">&lt;p&gt;Installing Python Image Library on CentOS 6 seems easy but It could be a pain if particular problems show up.&lt;/p&gt;
+&lt;p&gt;I tried to install it using pip.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;pil&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;But it was installed without JPEG support. So, if you try to manipulate JPEG images you will get an error: &lt;code&gt;decoder jpeg not available&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In order to install JPEG support for PIL you need to install &lt;code&gt;libjpeg&lt;/code&gt; and &lt;code&gt;libjpeg-devel&lt;/code&gt; libraries.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;yum&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;libjpeg&lt;/span&gt; &lt;span class="n"&gt;libjpeg&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;devel&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then, you need to remove PIL from your system and install it again with JPEG support.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;$ &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;uninstall&lt;/span&gt; &lt;span class="n"&gt;pil&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;But when I tried to install PIL again, just using pip, it didn't work. So I tried the source code installation.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;$ &lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;effbot&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;downloads&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Imaging&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;1&lt;span class="p"&gt;.&lt;/span&gt;1&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt;
+$ &lt;span class="n"&gt;tar&lt;/span&gt; &lt;span class="n"&gt;xvzf&lt;/span&gt; &lt;span class="n"&gt;Imaging&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;1&lt;span class="p"&gt;.&lt;/span&gt;1&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt;
+$ &lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="n"&gt;PIL&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;1&lt;span class="p"&gt;.&lt;/span&gt;1&lt;span class="p"&gt;.&lt;/span&gt;7
+$ &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Again, it didn't work. That was because you need to tell PIL where to find JPEG and ZLIB libraries. To do so, you have to edit &lt;code&gt;setup.py&lt;/code&gt;, including those libraries locations as follows:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;TCL_ROOT&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+&lt;span class="n"&gt;JPEG_ROOT&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;/usr/lib64&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;/usr/include&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;ZLIB_ROOT&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;/lib64&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;/usr/include&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;TIFF_ROOT&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+&lt;span class="n"&gt;FREETYPE_ROOT&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;/usr/lib64&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;/usr/include/freetype2/freetype&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;LCMS_ROOT&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then you can compile and try PIL getting satisfactory results:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;$ &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="n"&gt;build_ext&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;i&lt;/span&gt;
+
+$ &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;selftest&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="o"&gt;--------------------------------------------------------------------&lt;/span&gt;
+&lt;span class="n"&gt;PIL&lt;/span&gt; 1&lt;span class="p"&gt;.&lt;/span&gt;1&lt;span class="p"&gt;.&lt;/span&gt;7 &lt;span class="n"&gt;TEST&lt;/span&gt; &lt;span class="n"&gt;SUMMARY&lt;/span&gt;
+&lt;span class="o"&gt;--------------------------------------------------------------------&lt;/span&gt;
+&lt;span class="n"&gt;Python&lt;/span&gt; &lt;span class="n"&gt;modules&lt;/span&gt; &lt;span class="n"&gt;loaded&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="o"&gt;./&lt;/span&gt;&lt;span class="n"&gt;PIL&lt;/span&gt;
+&lt;span class="n"&gt;Binary&lt;/span&gt; &lt;span class="n"&gt;modules&lt;/span&gt; &lt;span class="n"&gt;loaded&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="o"&gt;./&lt;/span&gt;&lt;span class="n"&gt;PIL&lt;/span&gt;
+&lt;span class="o"&gt;--------------------------------------------------------------------&lt;/span&gt;
+&lt;span class="o"&gt;---&lt;/span&gt; &lt;span class="n"&gt;PIL&lt;/span&gt; &lt;span class="n"&gt;CORE&lt;/span&gt; &lt;span class="n"&gt;support&lt;/span&gt; &lt;span class="n"&gt;ok&lt;/span&gt;
+&lt;span class="o"&gt;---&lt;/span&gt; &lt;span class="n"&gt;TKINTER&lt;/span&gt; &lt;span class="n"&gt;support&lt;/span&gt; &lt;span class="n"&gt;ok&lt;/span&gt;
+&lt;span class="o"&gt;---&lt;/span&gt; &lt;span class="n"&gt;JPEG&lt;/span&gt; &lt;span class="n"&gt;support&lt;/span&gt; &lt;span class="n"&gt;ok&lt;/span&gt;
+&lt;span class="o"&gt;---&lt;/span&gt; &lt;span class="n"&gt;ZLIB&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PNG&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ZIP&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;support&lt;/span&gt; &lt;span class="n"&gt;ok&lt;/span&gt;
+&lt;span class="o"&gt;---&lt;/span&gt; &lt;span class="n"&gt;FREETYPE2&lt;/span&gt; &lt;span class="n"&gt;support&lt;/span&gt; &lt;span class="n"&gt;ok&lt;/span&gt;
+&lt;span class="o"&gt;---&lt;/span&gt; &lt;span class="n"&gt;LITTLECMS&lt;/span&gt; &lt;span class="n"&gt;support&lt;/span&gt; &lt;span class="n"&gt;ok&lt;/span&gt;
+&lt;span class="o"&gt;--------------------------------------------------------------------&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then run again &lt;code&gt;python setup.py install&lt;/code&gt; and it's done.&lt;/p&gt;
+&lt;p&gt;This should be enough but I have a couple more issues. When I tried some code to crop images, I still got the error for JPEG images. It happened because I imported I directly imported &lt;code&gt;Image&lt;/code&gt; in my python script.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;Image&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;But It has to be imported from PIL&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;PIL&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Image&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then I have no problems to run my script as root, but when I tried to run it as a different user I got the same error. To fix this I unistalled PIP and I installed it again using pip but changing &lt;code&gt;setup.py&lt;/code&gt; as commented above.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;$ &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;pil&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then edit &lt;code&gt;setup.py&lt;/code&gt; and install the library&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;$ &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;pil&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;download&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="python"></category><category term="PIL"></category><category term="centos"></category></entry></feed>
