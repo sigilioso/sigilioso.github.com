@@ -1,5 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>sigilioso</title><link href="http://sigilioso.github.com" rel="alternate"></link><link href="http://sigilioso.github.com/feeds/dev.atom.xml" rel="self"></link><id>http://sigilioso.github.com</id><updated>2012-07-04T00:00:00+02:00</updated><entry><title>PIL installation problems on CentOS 6</title><link href="http://sigilioso.github.com/pil-installation-problems-on-centos-6.html" rel="alternate"></link><updated>2012-07-04T00:00:00+02:00</updated><author><name>Christian Felipe Álvarez</name></author><id>http://sigilioso.github.com/pil-installation-problems-on-centos-6.html</id><summary type="html">&lt;p&gt;Installing Python Image Library on CentOS 6 seems easy but It could be a pain if particular problems show up.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>sigilioso</title><link href="http://sigilioso.github.com" rel="alternate"></link><link href="http://sigilioso.github.com/feeds/dev.atom.xml" rel="self"></link><id>http://sigilioso.github.com</id><updated>2012-07-30T00:00:00+02:00</updated><entry><title>Bash memo I</title><link href="http://sigilioso.github.com/bash-memo-i.html" rel="alternate"></link><updated>2012-07-30T00:00:00+02:00</updated><author><name>Christian Felipe Álvarez</name></author><id>http://sigilioso.github.com/bash-memo-i.html</id><summary type="html">&lt;p&gt;This post is the first reminder of some bash commands/utilities which are easy to forget if you do not use them frequently.&lt;/p&gt;
+&lt;h2&gt;For loops and command result&lt;/h2&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Basic for loop&lt;/span&gt;
+&lt;span class="k"&gt;for &lt;/span&gt;V in &lt;span class="s2"&gt;&amp;quot;one two three&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;do&lt;/span&gt;
+&lt;span class="k"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$V&lt;/span&gt;
+&lt;span class="k"&gt;done&lt;/span&gt;
+
+&lt;span class="c"&gt;# Basic loop in one line&lt;/span&gt;
+&lt;span class="k"&gt;for &lt;/span&gt;V in &lt;span class="s2"&gt;&amp;quot;one two three&amp;quot;&lt;/span&gt;; &lt;span class="k"&gt;do &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$V&lt;/span&gt;; &lt;span class="k"&gt;done&lt;/span&gt;
+
+&lt;span class="c"&gt;# `command` get the command result&lt;/span&gt;
+&lt;span class="c"&gt;# Makes a copy of txt files getting a &amp;lt;name&amp;gt;.copy copy&lt;/span&gt;
+&lt;span class="k"&gt;for &lt;/span&gt;F in &lt;span class="sb"&gt;`&lt;/span&gt;find -name &lt;span class="s2"&gt;&amp;quot;*.txt&amp;quot;&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
+&lt;span class="k"&gt;do&lt;/span&gt;
+&lt;span class="k"&gt;    &lt;/span&gt;cp &lt;span class="nv"&gt;$F&lt;/span&gt; &lt;span class="nv"&gt;$F&lt;/span&gt;.copy
+&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Bash strings manipulation&lt;/h2&gt;
+&lt;h3&gt;Substring&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;STRING&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;this_is_an_example&amp;quot;&lt;/span&gt;
+
+&lt;span class="c"&gt;# ${string:position:length}, ${string:position}&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;STRING&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nv"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nv"&gt;4&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt; &lt;span class="c"&gt;# --&amp;gt; this&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;STRING&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nv"&gt;4&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt; &lt;span class="c"&gt;# --&amp;gt; _is_an_example&lt;/span&gt;
+
+&lt;span class="c"&gt;# ${string#substring} deletes the shortest match from the beginning&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;STRING&lt;/span&gt;&lt;span class="p"&gt;#*_&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt; &lt;span class="c"&gt;# --&amp;gt; is_an_example&lt;/span&gt;
+
+&lt;span class="c"&gt;# ${string#substring} deletes the shortest match from the end&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;STRING&lt;/span&gt;&lt;span class="p"&gt;%_*&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt; &lt;span class="c"&gt;# --&amp;gt; this_is_an&lt;/span&gt;
+
+&lt;span class="c"&gt;# ${string##substring} deletes the longest match from the beginning&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;STRING&lt;/span&gt;&lt;span class="p"&gt;##*_&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt; &lt;span class="c"&gt;# --&amp;gt; example&lt;/span&gt;
+
+&lt;span class="c"&gt;# ${string%%substring} deletes the longest match from the end&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;STRING&lt;/span&gt;&lt;span class="p"&gt;%%_*&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt; &lt;span class="c"&gt;# --&amp;gt; this&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Replacement&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;STRING&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;this_is_an_example&amp;quot;&lt;/span&gt;
+
+&lt;span class="c"&gt;# $string/pattern/replacement} (Only first match)&lt;/span&gt;
+&lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;STRING&lt;/span&gt;&lt;span class="p"&gt;/is/AA&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt; &lt;span class="c"&gt;# --&amp;gt; thAA_is_an_example&lt;/span&gt;
+
+&lt;span class="c"&gt;# $string/pattern/replacement} (All matches)&lt;/span&gt;
+&lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;STRING&lt;/span&gt;&lt;span class="p"&gt;//is/AA&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt; &lt;span class="c"&gt;# --&amp;gt; thAA_AA_an_example&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="bash"></category></entry><entry><title>PIL installation problems on CentOS 6</title><link href="http://sigilioso.github.com/pil-installation-problems-on-centos-6.html" rel="alternate"></link><updated>2012-07-04T00:00:00+02:00</updated><author><name>Christian Felipe Álvarez</name></author><id>http://sigilioso.github.com/pil-installation-problems-on-centos-6.html</id><summary type="html">&lt;p&gt;Installing Python Image Library on CentOS 6 seems easy but It could be a pain if particular problems show up.&lt;/p&gt;
 &lt;p&gt;I tried to install it using pip.&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;pil&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
