@@ -47,7 +47,7 @@
 &lt;span class="c"&gt;# $string/pattern/replacement} (Only first match)&lt;/span&gt;
 &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;STRING&lt;/span&gt;&lt;span class="p"&gt;/is/AA&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt; &lt;span class="c"&gt;# --&amp;gt; thAA_is_an_example&lt;/span&gt;
 
-&lt;span class="c"&gt;# $string/pattern/replacement} (All matches)&lt;/span&gt;
+&lt;span class="c"&gt;# $string//pattern/replacement} (All matches)&lt;/span&gt;
 &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;STRING&lt;/span&gt;&lt;span class="p"&gt;//is/AA&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt; &lt;span class="c"&gt;# --&amp;gt; thAA_AA_an_example&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="bash"></category></entry><entry><title>PIL installation problems on CentOS 6</title><link href="http://sigilioso.github.com/pil-installation-problems-on-centos-6.html" rel="alternate"></link><updated>2012-07-04T00:00:00+02:00</updated><author><name>Christian Felipe Álvarez</name></author><id>http://sigilioso.github.com/pil-installation-problems-on-centos-6.html</id><summary type="html">&lt;p&gt;Installing Python Image Library on CentOS 6 seems easy but It could be a pain if particular problems show up.&lt;/p&gt;
 &lt;p&gt;I tried to install it using pip.&lt;/p&gt;
