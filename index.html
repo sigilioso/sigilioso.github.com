@@ -1,172 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>sigilioso</title>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="./theme/css/main.css" type="text/css" />
-        <link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
-        
-        <!--[if IE]>
-        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-        <!--[if lte IE 7]>
-        <link rel="stylesheet" type="text/css" media="all" href="./css/ie.css"/>
-        <script src="./js/IE8.js" type="text/javascript"></script><![endif]-->
-        <!--[if lt IE 7]>
-        <link rel="stylesheet" type="text/css" media="all" href="./css/ie6.css"/><![endif]-->
-    </head>
-    <body id="index" class="home">
-        <header id="banner" class="body">
-        <h1><a href=".">sigilioso </a></h1>
-        <nav><ul>
-            
-            
-            
-            <li><a href="./pages/portfolio.html">Portfolio</a></li>
-            
-            
-            
-            <li ><a href="./">dev</a></li>
-            
-        </ul></nav>
-        </header>
-                
+  <head>
+    <meta charset="utf-8">
+    <title>Portfolio</title>
+    <meta name="description" content="Portfolio">
+    <meta name="author" content="Christian Felipe Álvarez">
+    <!-- Bootstrap -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style>
+      body {
+        padding-top: 40px;
+        background-image: url(./img/t-square8-2_s.png);
+      }
+      #main {
+        box-shadow: 0.2em 0.2em 1em #777;
+        border-radius: 10px;
+        padding: 15px;
+        background: #FFF;
+        opacity: 0.8;
+      }
+      h1 {
+        text-align: center;
+        text-shadow: 0.1em 0.1em 0.2em #555;
+      }
+      h2 {
+        font-size: 29.5px;
+        border-bottom: 1px dashed #555;
+        margin-top: 50px;
+      }
+      h3 {
+        font-size: 23.5px;
+        margin-left: 3%;
+        margin-top: 30px;
+      }
+      .snapshot {
+        margin-top: 20px;
+        text-align: center;
+      }
+      .snapshot img {
+        box-shadow: 0.2em 0.2em 0.6em #888;
+        max-width: 80%;
+      }
+      .project-desc {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .project-details dt, .project-details dd {
+        margin-bottom: 10px;
+      }
+      #name {
+        cursor: auto;
+        color: #FFF;
+      }
+      hr {
+        margin: 20px auto;
+        width: 60%;
+        border-bottom: 1px dashed #AAA;
+      }
+    </style>
+    <link href="./bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-            
+    <!-- Fav and touch icons -->
+  </head>
+  <body>
 
-        
-        
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="./bash-memo-i.html">Bash memo I</a></h1> 
-                    <p>This post is the first reminder of some bash commands/utilities which are easy to forget if you do not use them frequently.</p>
-<h2>For loops and command result</h2>
-<div class="codehilite"><pre><span class="c"># Basic for loop</span>
-<span class="k">for </span>V in <span class="s2">&quot;one two three&quot;</span>
-<span class="k">do</span>
-<span class="k">    </span><span class="nb">echo</span> <span class="nv">$V</span>
-<span class="k">done</span>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a href="http://sigilioso.github.com" class="brand">Portfolio</a>
+          <ul class="nav">
+            <li><a id="name">Christian Felipe Álvarez</a></li>
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="socials"><a href="http://github.com/sigilioso">Github</a></li>
+                <li class="socials"><a href="http://twitter.com/chfelipe">Twitter</a></li>
+                <li class="socials"><a href="http://es.linkedin.com/in/chfelipe/en">Linkedin</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-<span class="c"># Basic loop in one line</span>
-<span class="k">for </span>V in <span class="s2">&quot;one two three&quot;</span>; <span class="k">do </span><span class="nb">echo</span> <span class="nv">$V</span>; <span class="k">done</span>
+    <div id="main" class="container">
 
-<span class="c"># `command` get the command result</span>
-<span class="c"># Makes a copy of txt files getting a &lt;name&gt;.copy copy</span>
-<span class="k">for </span>F in <span class="sb">`</span>find -name <span class="s2">&quot;*.txt&quot;</span><span class="sb">`</span>
-<span class="k">do</span>
-<span class="k">    </span>cp <span class="nv">$F</span> <span class="nv">$F</span>.copy
-<span class="k">done</span>
-</pre></div>
+      
+      <h1>Portfolio</h1>
+      <h2>Web Projects</h2>
+            <section class="row-fluid">
+        <h3>MonPress: a django based blogging system</h3>
+        <div class="span12">
+          <div class="muted project-desc">
+            <p>Year: 2012 — Company: <i>Mondigital S.L.</i> — Examples: <a href="http://cromosomax.com">CromosomaX</a>, <a href="http://cultture.com">Cultture</a></p>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span4">
+            <div class="snapshot">
+              <img src="./img/monpress.png"/>
+            </div>
+          </div>
+          <div class="span8">
+            <dl class="dl-horizontal project-details">
+              <dt>Contribution</dt>
+              <dd>Analysis and design, development, system administration, migration from previous version.</dd>
+              <dt>Main Technologies</dt>
+              <dd>Python, Django, django-filebrowser, python image library (PIL), MySQL, TinyMCE, jQuery, uwsgi, nginx, memcached, git.</dd>
+              <dt>Description</dt>
+              <dd>This project was defined to get a light, secure and customized blogging system. It involves not only the blogging system design and development but also the migration of the previous data for several Wordpress blogs. It was developed with Django web framework and several django applications, taking the advantage of the django auth/admin system to easily manage users and let them publish new content.</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
 
+      <hr>
+            <section class="row-fluid">
+        <h3>Biolavado</h3>
+        <div class="span12">
+          <div class="muted project-desc">
+            <p>Year: 2012 — Company: <i>Mondigital S.L.</i> — <a href="http://biolavado.com">Biolavado</a></p>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span4">
+            <div class="snapshot">
+              <img src="./img/biolavado.png"/>
+            </div>
+          </div>
+          <div class="span8">
+            <dl class="dl-horizontal project-details">
+              <dt>Contribution</dt>
+              <dd>Analysis and design, development, system administration, migration from previous version.</dd>
+              <dt>Main Technologies</dt>
+              <dd>Python, Django, MySQL, jQuery, gunicorn, nginx, git.</dd>
+              <dt>Description</dt>
+              <dd>This is a <i>simple</i> company website which consist of some static content and a simple contact form. It had been developed with Joomla and its owner wanted a more secure and faster solution, moreofer he still wanted to be able to easily edit some elements such as texts and tags. The website was developed with django, taking the advantage of django admin/auth application.</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
 
-<h2>Bash strings manipulation</h2>
-<h3>Substring</h3>
-<div class="codehilite"><pre><span class="nv">STRING</span><span class="o">=</span><span class="s2">&quot;this_is_an_example&quot;</span>
+      <hr>
+            <section class="row-fluid">
+        <h3>Posot</h3>
+        <div class="span12">
+          <div class="muted project-desc">
+            <p>When: 2010 - 2012 — Company: <i>Mondigital S.L.</i> — <a href="http://posot.es/">Posot</a></a></p>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span4">
+            <div class="snapshot">
+              <img src="./img/posot.png"/>
+            </div>
+          </div>
+          <div class="span8">
+            <dl class="dl-horizontal project-details">
+              <dt>Contribution</dt>
+              <dd>Analysis and design, development, system administration, maintenance, database queries optimization, crawlers development, migration from previous version.</dd>
+              <dt>Main Technologies</dt>
+              <dd>Python, Werkzeug, Jinja2, MySQL, Sphinx Search Server, jQuery, uwsgi, Nginx, git.</dd>
+              <dt>Description</dt>
+              <dd>Posot and Cozot sites are search engines for jobs, homes, cars and used products. They are defined to help users to find what they are looking for and they are <i>multilingual</i> (depending on the domain). This project also involves web crawlers and xml/csv processors, needed to get and index the classifieds ads.</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
 
-<span class="c"># ${string:position:length}, ${string:position}</span>
-<span class="nb">echo</span> <span class="k">${</span><span class="nv">STRING</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">4</span><span class="k">}</span> <span class="c"># --&gt; this</span>
-<span class="nb">echo</span> <span class="k">${</span><span class="nv">STRING</span><span class="p">:</span><span class="nv">4</span><span class="k">}</span> <span class="c"># --&gt; _is_an_example</span>
+      <hr>
+            <section class="row-fluid">
+        <h3>Clasf</h3>
+        <div class="span12">
+          <div class="muted project-desc">
+            <p>Year: 2011 - 2012 — Company: <i>Mondigital S.L.</i> — <a href="http://clasf.es">Clasf</a></p>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span4">
+            <div class="snapshot">
+              <img src="./img/clasf.png"/>
+            </div>
+          </div>
+          <div class="span8">
+            <dl class="dl-horizontal project-details">
+              <dt>Contribution</dt>
+              <dd>Analysis and design, development, system administration, maintenance, database design and implementation.</dd>
+              <dt>Main Technologies</dt>
+              <dd>Python, Werkzeug, Jinja2, MySQL, Sphinx Search Server, jQuery, twitter-bootstrapt, uwsgi, Nginx, git.</dd>
+              <dt>Description</dt>
+              <dd>Clasf is a website which let users publish ads for free, bringing them another place to buy and sell used products. It is <i>multilingual</i> (based on domain) and includes some xml/csv processors to get ads from online shops.</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
 
-<span class="c"># ${string#substring} deletes the shortest match from the beginning</span>
-<span class="nb">echo</span> <span class="k">${</span><span class="nv">STRING</span><span class="p">#*_</span><span class="k">}</span> <span class="c"># --&gt; is_an_example</span>
+      <hr>
+            <section class="row-fluid">
+        <h3>Jobatus</h3>
+        <div class="span12">
+          <div class="muted project-desc">
+            <p>Year: 2011 - 2012 — Company: <i>Mondigital S.L.</i> — <a href="http://www.jobatus.es">Jobatus</a></p>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span4">
+            <div class="snapshot">
+              <img src="./img/jobatus.png"/>
+            </div>
+          </div>
+          <div class="span8">
+            <dl class="dl-horizontal project-details">
+              <dt>Contribution</dt>
+              <dd>Analysis and design, development, system administration, maintenance, database design and implementation, crawlers development.</dd>
+              <dt>Main Technologies</dt>
+              <dd>Python, Django, Django-SocialAuth, MySQL, Sphinx Search Server, jQuery, mod-wsgi, Apache, git.</dd>
+              <dt>Description</dt>
+              <dd>Jobatus is a job search engine and a place where companies can directly upload job offers for free and just in one step. Jobatus includes the possibility to sign up with Facebook and Linkedin to let people upload their offers as quick as possible.</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
 
-<span class="c"># ${string#substring} deletes the shortest match from the end</span>
-<span class="nb">echo</span> <span class="k">${</span><span class="nv">STRING</span><span class="p">%_*</span><span class="k">}</span> <span class="c"># --&gt; this_is_an</span>
+      <h2>Miscellaneous</h2>
+            <section class="row-fluid">
+        <h3>jquery-h-nav-index</h3>
+        <div class="span12">
+          <div class="muted project-desc">
+            <p>Year: 2012 — <a href="https://github.com/sigilioso/jquery-h-nav-index">Github project</a></p>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span4">
+            <div class="snapshot">
+              <img src="./img/jquery-h-nav-index.png"/>
+            </div>
+          </div>
+          <div class="span8">
+            <dl class="dl-horizontal project-details">
+              <dt>Contribution</dt>
+              <dd>Sole developer</dd>
+              <dt>Main Technologies</dt>
+              <dd>Javascript, jQuery, CSS</dd>
+              <dt>Description</dt>
+              <dd>This project is a simple jQuery plugin developed to generate an index from headers from a HTML document and automatically link to those headers (as internal links).</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
 
-<span class="c"># ${string##substring} deletes the longest match from the beginning</span>
-<span class="nb">echo</span> <span class="k">${</span><span class="nv">STRING</span><span class="p">##*_</span><span class="k">}</span> <span class="c"># --&gt; example</span>
+      <hr>
+            <section class="row-fluid">
+        <h3>Pymyinfo</h3>
+        <div class="span12">
+          <div class="muted project-desc">
+            <p>Year: 2012 — <a href="https://github.com/sigilioso/pymyinfo">Github project</a></p>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span4">
+            <div class="snapshot">
+              <img src="./img/pymyinfo.png"/>
+            </div>
+          </div>
+          <div class="span8">
+            <dl class="dl-horizontal project-details">
+              <dt>Contribution</dt>
+              <dd>Sole developer</dd>
+              <dt>Main Technologies</dt>
+              <dd>Python, Flask, MySQL, jQuery, twitter-bootstrap</dd>
+              <dt>Description</dt>
+              <dd>A simple Flask / jQuery based MySQL processes monitor. This project brought me the opportunity to play with twitter-bootstrapt framework and to practice with other technologies.</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
 
-<span class="c"># ${string%%substring} deletes the longest match from the end</span>
-<span class="nb">echo</span> <span class="k">${</span><span class="nv">STRING</span><span class="p">%%_*</span><span class="k">}</span> <span class="c"># --&gt; this</span>
-</pre></div>
+      <hr>
+            <section class="row-fluid">
+        <h3>Kmes</h3>
+        <div class="span12">
+          <div class="muted project-desc">
+            <p>Year: 2009 - 2010 — Carlos III de Madrid University (Project as Master Thesis) — <a href="http://www.lab.inf.uc3m.es/~christian/kmes/">Source code and abstract</a>, <a href="http://e-archivo.uc3m.es/handle/10016/10365">master thesis</a> (in Spanish).</p>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span4">
+            <div class="snapshot">
+              <img src="./img/thesis.png"/>
+            </div>
+          </div>
+          <div class="span8">
+            <dl class="dl-horizontal project-details">
+              <dt>Contribution</dt>
+              <dd>Sole developer</dd>
+              <dt>Main Technologies</dt>
+              <dd>Evolution Strategies, K-Means, Java, GNU-Octave, GNU-Plot</dd>
+              <dt>Description</dt>
+              <dd>Study and implementationof some methods and experiments to find a measure of distance for prototype-based classifiers, such as K-Means, by means of evolution strategies.</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
 
+      <hr>
 
-<h3>Replacement</h3>
-<div class="codehilite"><pre><span class="nv">STRING</span><span class="o">=</span><span class="s2">&quot;this_is_an_example&quot;</span>
-
-<span class="c"># $string/pattern/replacement} (Only first match)</span>
-<span class="k">${</span><span class="nv">STRING</span><span class="p">/is/AA</span><span class="k">}</span> <span class="c"># --&gt; thAA_is_an_example</span>
-
-<span class="c"># $string//pattern/replacement} (All matches)</span>
-<span class="k">${</span><span class="nv">STRING</span><span class="p">//is/AA</span><span class="k">}</span> <span class="c"># --&gt; thAA_AA_an_example</span>
-</pre></div><footer class="post-info">
-2012/07/30 - tags: <a href="./">bash</a>
-
-</footer>
-                </article>
-                
-            </aside><!-- /#featured -->
-            
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-            
-        
-        
-        
-            
-
-        
-         
-            
-            <li><article class="hentry">    
-                <header>
-                    <h1><a href="./pil-installation-problems-on-centos-6.html" rel="bookmark"
-                           title="Permalink to PIL installation problems on CentOS 6">PIL installation problems on CentOS 6</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <p>Installing Python Image Library on CentOS 6 seems easy but It could be a pain if particular problems show up.</p>
-<p>I tried to install it using pip.</p>
-<div class="codehilite"><pre><span class="n">pip</span> <span class="n">install</span> <span class="n">pil</span>
-</pre></div>
-
-
-<p>But it was installed without JPEG support. So, if you try to manipulate JPEG images you will get an error ...</p>
-                <footer class="post-info">
-2012/07/04 - tags: <a href="./">python</a>, <a href="./">PIL</a>, <a href="./">centos</a>
-
-</footer>
-                <a class="readmore" href="./pil-installation-problems-on-centos-6.html">read more</a>
-                
-                </div><!-- /.entry-content -->
-            </article></li>
-        
-        
-            </ol><!-- /#posts-list -->
-            
-                
-<p class="paginator">
-    
-    Page 1 / 1
-    
-</p>
-
-            
-            </section><!-- /#content -->
-        
-    
-
-
-        <section id="extras" class="body">
-        
-        </section><!-- /#extras -->
-        <footer id="contentinfo" class="body">
-        
-        <address id="about" class="primary">
-            <strong>Christian Felipe Álvarez</strong>
-            
-            <a href="http://github.com/sigilioso">github</a>  - 
-            
-            <a href="http://twitter.com/chfelipe">twitter</a>  - 
-            
-            <a href="http://www.linkedin.com/in/chfelipe/en">linkedin</a>  - 
-            
-            <a href="https://springpad.com/#!/sigilioso/notebooks/howtotips-5f96/">springpad</a> 
-            
-        </address>
-        
-        </footer>
-        
-    </body>
+    </div>
+    <!-- Bootstrap -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="./bootstrap/js/bootstrap.min.js"></script>
+  </body>
 </html>
